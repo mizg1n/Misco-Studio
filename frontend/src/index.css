@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #a78bfa; /* lilac */
+  --color-primary-dark: #8b5cf6;
+  --color-secondary: #f472b6; /* pink */
+  
+  /* Overriding the slate palette to be Lilac/Mauve tinted for the whole site */
+  --color-slate-50: #fbf9ff;
+  --color-slate-100: #f4efff;
+  --color-slate-200: #e7def8;
+  --color-slate-300: #d3c1f0;
+  --color-slate-400: #b49ce5;
+  --color-slate-500: #906cd5;
+  --color-slate-600: #744bbf;
+  --color-slate-700: #5d38a0;
+  --color-slate-800: #3c1e70;
+  --color-slate-900: #230d4a;
+  --color-slate-950: #14052e;
+
+  --color-dark-bg: var(--color-slate-900);
+  --color-dark-surface: var(--color-slate-800);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-dark-bg);
+  color: #f8fafc;
+  
+  /* A very subtle blue-pink gradient radial background for the whole app */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(236, 72, 153, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.05), transparent 25%);
+  background-attachment: fixed;
+}
+
+.glass-panel {
+  background: rgba(60, 30, 112, 0.4); /* Based on slate-800 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(211, 193, 240, 0.1); /* Based on slate-300 */
+  box-shadow: 0 8px 32px 0 rgba(20, 5, 46, 0.3);
+}
