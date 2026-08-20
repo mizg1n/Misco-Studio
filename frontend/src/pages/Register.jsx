@@ -58,7 +58,7 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-slate-900 text-slate-200 py-10">
       <div className="w-full max-w-md p-8 glass-panel rounded-2xl shadow-2xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
             Misco Studio
           </h1>
           <p className="text-slate-400 mt-2">Yeni Müşteri Hesabı Oluştur</p>
@@ -76,7 +76,7 @@ const Register = () => {
             <input 
               type="text" 
               name="username"
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
               value={formData.username}
               onChange={handleChange}
               required
@@ -87,7 +87,7 @@ const Register = () => {
             <input 
               type="email" 
               name="email"
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
               value={formData.email}
               onChange={handleChange}
               required
@@ -98,7 +98,7 @@ const Register = () => {
             <input 
               type="tel" 
               name="phone_number"
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
               value={formData.phone_number}
               onChange={handleChange}
             />
@@ -108,7 +108,7 @@ const Register = () => {
             <input 
               type="password" 
               name="password"
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
               value={formData.password}
               onChange={handleChange}
               required
@@ -118,7 +118,7 @@ const Register = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+            className="w-full py-3 bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
           >
             {loading ? 'Kayıt Olunuyor...' : 'Kayıt Ol'}
           </button>
@@ -127,7 +127,7 @@ const Register = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-slate-400">
             Zaten hesabınız var mı?{' '}
-            <Link to="/login" className="text-purple-400 hover:text-purple-300 font-medium transition-colors">
+            <Link to="/login" className="text-yellow-400 hover:text-yellow-300 font-medium transition-colors">
               Giriş Yapın
             </Link>
           </p>

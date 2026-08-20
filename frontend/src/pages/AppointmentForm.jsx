@@ -139,7 +139,7 @@ const AppointmentForm = () => {
             <div>
               <label className="block text-sm font-medium text-slate-400 mb-2">Ana Kategori</label>
               <select
-                className="w-full px-4 py-3 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+                className="w-full px-4 py-3 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
                 value={formData.service_type}
                 onChange={(e) => setFormData({ ...formData, service_type: e.target.value, sub_service: "" })}
               >
@@ -150,7 +150,7 @@ const AppointmentForm = () => {
             <div>
               <label className="block text-sm font-medium text-slate-400 mb-2">Alt İşlem Seçimi</label>
               <select
-                className="w-full px-4 py-3 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+                className="w-full px-4 py-3 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
                 value={formData.sub_service}
                 onChange={(e) => setFormData({ ...formData, sub_service: e.target.value })}
                 required
@@ -166,7 +166,7 @@ const AppointmentForm = () => {
           <div>
             <label className="block text-sm font-medium text-slate-400 mb-2">Sanatçı Tercihi (İsteğe Bağlı)</label>
             <select
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
               value={selectedArtist}
               onChange={(e) => { setSelectedArtist(e.target.value); setSelectedTime(""); }}
             >
@@ -180,7 +180,7 @@ const AppointmentForm = () => {
           <div>
             <label className="block text-sm font-medium text-slate-400 mb-2">Ek Detaylar (İsteğe Bağlı)</label>
             <textarea
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200 h-32 resize-none"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200 h-32 resize-none"
               placeholder="İstediğiniz modelin detaylarını veya özel isteklerinizi buraya yazabilirsiniz..."
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -188,8 +188,8 @@ const AppointmentForm = () => {
           </div>
 
           {selectedDate && selectedTime ? (
-            <div className="p-4 bg-purple-500/10 border border-purple-500/20 rounded-lg">
-              <p className="text-purple-300 font-medium">Seçilen Randevu:</p>
+            <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+              <p className="text-yellow-300 font-medium">Seçilen Randevu:</p>
               <p className="text-slate-200">{format(selectedDate, "dd MMMM yyyy", { locale: tr })} - {selectedTime}</p>
             </div>
           ) : (
@@ -199,7 +199,7 @@ const AppointmentForm = () => {
           <button
             type="submit"
             disabled={loading || !selectedDate || !selectedTime}
-            className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-4 bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Gönderiliyor..." : "Randevu Talebini Gönder"}
           </button>
@@ -247,7 +247,7 @@ const AppointmentForm = () => {
                       className={!slot.available
                         ? "py-2 rounded-lg text-sm font-medium transition-colors bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700/50"
                         : selectedTime === slot.time
-                          ? "py-2 rounded-lg text-sm font-medium transition-colors bg-purple-600 text-white shadow-lg shadow-purple-500/30"
+                          ? "py-2 rounded-lg text-sm font-medium transition-colors bg-yellow-600 text-white shadow-lg shadow-yellow-500/30"
                           : "py-2 rounded-lg text-sm font-medium transition-colors bg-slate-700/50 text-slate-300 hover:bg-slate-700 border border-slate-600"}
                     >
                       {slot.time}

@@ -25,9 +25,9 @@ const AdminUsers = () => {
   const getRoleIcon = (role) => {
     switch (role) {
       case 'ADMIN': return <Shield size={16} className="text-red-400" />;
-      case 'ARTIST': return <Palette size={16} className="text-blue-400" />;
+      case 'ARTIST': return <Palette size={16} className="text-yellow-400" />;
       case 'RECEPTIONIST': return <Headphones size={16} className="text-emerald-400" />;
-      case 'CUSTOMER': return <User size={16} className="text-purple-400" />;
+      case 'CUSTOMER': return <User size={16} className="text-yellow-400" />;
       default: return <User size={16} className="text-slate-400" />;
     }
   };
@@ -35,9 +35,9 @@ const AdminUsers = () => {
   const getRoleBadge = (role) => {
     const styles = {
       'ADMIN': 'bg-red-500/20 text-red-400 border-red-500/30',
-      'ARTIST': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+      'ARTIST': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
       'RECEPTIONIST': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-      'CUSTOMER': 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+      'CUSTOMER': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
     };
     const labels = {
       'ADMIN': 'Admin',
@@ -57,7 +57,7 @@ const AdminUsers = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
-          <Users className="text-purple-400" />
+          <Users className="text-yellow-400" />
           Kayıtlı Kullanıcılar
         </h2>
         <span className="text-sm text-slate-400">{users.length} kullanıcı</span>
@@ -83,7 +83,7 @@ const AdminUsers = () => {
                 <td className="px-6 py-4 text-sm text-slate-500 font-mono">#{user.id}</td>
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-sm font-bold text-purple-400 border border-purple-500/30">
+                    <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-sm font-bold text-yellow-400 border border-yellow-500/30">
                       {user.username.charAt(0).toUpperCase()}
                     </div>
                     <span className="text-sm font-medium text-slate-200">{user.username}</span>

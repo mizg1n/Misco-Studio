@@ -48,7 +48,7 @@ const ArtistEarnings = () => {
         </div>
         <div className="glass-panel p-6 rounded-2xl">
           <p className="text-slate-400 text-sm">Tamamlanan İşlem</p>
-          <h3 className="text-3xl font-bold text-purple-400 mt-1 flex items-center gap-2">
+          <h3 className="text-3xl font-bold text-yellow-400 mt-1 flex items-center gap-2">
             <Activity size={24} />
             {data?.total_sessions || 0}
           </h3>
@@ -58,7 +58,7 @@ const ArtistEarnings = () => {
       {/* Recent Payments Table */}
       <div className="glass-panel rounded-2xl p-6 border border-slate-700/50">
         <h3 className="text-lg font-semibold text-slate-200 mb-4 flex items-center gap-2">
-          <Calendar size={20} className="text-purple-400" />
+          <Calendar size={20} className="text-yellow-400" />
           Son İşlemlerim (Özet)
         </h3>
         <div className="overflow-x-auto">

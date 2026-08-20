@@ -73,7 +73,7 @@ const DashboardLayout = () => {
             <X size={24} />
           </button>
           <div className="text-right">
-            <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent">
               Misco Studio
             </h1>
             <p className="text-xs text-slate-400 mt-1">Yönetim Paneli</p>
@@ -90,11 +90,11 @@ const DashboardLayout = () => {
                 onClick={closeSidebar}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all group ${
                   isActive 
-                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30 shadow-lg shadow-purple-500/10' 
+                    ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 shadow-lg shadow-yellow-500/10' 
                     : 'hover:bg-slate-800 text-slate-300 hover:text-white'
                 }`}
               >
-                <span className={`${isActive ? 'text-purple-400' : 'text-slate-400 group-hover:text-purple-400'} transition-colors`}>
+                <span className={`${isActive ? 'text-yellow-400' : 'text-slate-400 group-hover:text-yellow-400'} transition-colors`}>
                   {item.icon}
                 </span>
                 <span className="font-medium">{item.label}</span>
@@ -105,7 +105,7 @@ const DashboardLayout = () => {
 
         <div className="p-4 mt-auto border-t border-slate-700/50 bg-slate-900/50">
           <div className="flex items-center gap-3 mb-4 px-2">
-            <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-purple-400 border border-purple-500/30">
+            <div className="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center font-bold text-yellow-400 border border-yellow-500/30">
               {user.username.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -129,13 +129,13 @@ const DashboardLayout = () => {
         <header className="h-20 glass-panel border-b border-slate-700/50 flex items-center justify-between px-8 sticky top-0 z-10 backdrop-blur-md bg-slate-900/80">
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" title="Ana Sayfaya Dön">
-              <Palette className="text-purple-400" size={24} />
+              <Palette className="text-yellow-400" size={24} />
               <span className="text-sm font-black tracking-widest text-slate-200 drop-shadow-md hidden sm:block">INK & STEEL</span>
             </Link>
 
             <h2 className="text-lg font-semibold text-slate-400 border-l border-slate-700/50 pl-6 hidden md:block">
               <span className="hidden sm:inline">Hoş Geldiniz, </span>
-              <span className="text-purple-400">{user.username}</span>
+              <span className="text-yellow-400">{user.username}</span>
             </h2>
           </div>
           
@@ -144,10 +144,10 @@ const DashboardLayout = () => {
             {/* Sağ Üst Menü Açma İkonu */}
             <button 
               onClick={() => setIsSidebarOpen(true)}
-              className="flex items-center justify-center p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition-all border border-slate-600 hover:border-purple-500 group shadow-lg"
+              className="flex items-center justify-center p-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition-all border border-slate-600 hover:border-yellow-500 group shadow-lg"
               title="Menüyü Aç"
             >
-              <Menu className="text-slate-400 group-hover:text-purple-400 transition-colors" size={24} />
+              <Menu className="text-slate-400 group-hover:text-yellow-400 transition-colors" size={24} />
             </button>
           </div>
         </header>

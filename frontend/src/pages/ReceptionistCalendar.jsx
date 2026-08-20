@@ -77,7 +77,7 @@ const ReceptionistCalendar = () => {
                 <div className="flex items-center gap-3 mb-2">
                   <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
                     apt.status === 'COMPLETED' ? 'bg-green-500/20 text-green-400' :
-                    apt.status === 'APPROVED' ? 'bg-blue-500/20 text-blue-400' :
+                    apt.status === 'APPROVED' ? 'bg-yellow-500/20 text-yellow-400' :
                     apt.status === 'REJECTED' ? 'bg-rose-500/20 text-rose-400' :
                     'bg-yellow-500/20 text-yellow-400'
                   }`}>
@@ -101,7 +101,7 @@ const ReceptionistCalendar = () => {
                 {apt.status === 'PENDING' && (
                   <>
                     <select
-                      className="w-full px-3 py-2 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 text-slate-200"
+                      className="w-full px-3 py-2 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 text-slate-200"
                       value={selectedArtists[apt.id] || ''}
                       onChange={(e) => handleArtistSelect(apt.id, e.target.value)}
                     >
@@ -130,7 +130,7 @@ const ReceptionistCalendar = () => {
                 {apt.status === 'APPROVED' && (
                   <button 
                     onClick={() => handleStatusChange(apt.id, 'COMPLETED')}
-                    className="w-full px-4 py-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 rounded-lg text-sm font-medium transition-colors"
+                    className="w-full px-4 py-2 bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 rounded-lg text-sm font-medium transition-colors"
                   >
                     Tamamlandı İşaretle
                   </button>

@@ -35,8 +35,8 @@ const AdminLogs = () => {
   };
 
   const getTargetInfo = (url) => {
-    if (url.includes('appointments')) return { text: 'Randevu Sistemi', icon: <Calendar size={16} className="text-purple-400" /> };
-    if (url.includes('users')) return { text: 'Kullanıcı Hesapları', icon: <User size={16} className="text-blue-400" /> };
+    if (url.includes('appointments')) return { text: 'Randevu Sistemi', icon: <Calendar size={16} className="text-yellow-400" /> };
+    if (url.includes('users')) return { text: 'Kullanıcı Hesapları', icon: <User size={16} className="text-yellow-400" /> };
     if (url.includes('prices')) return { text: 'Fiyat Listesi', icon: <Settings size={16} className="text-slate-400" /> };
     if (url.includes('care')) return { text: 'Bakım Yönergeleri', icon: <Info size={16} className="text-teal-400" /> };
     return { text: 'Genel Sistem (' + url + ')', icon: <Settings size={16} className="text-slate-500" /> };
@@ -59,13 +59,13 @@ const AdminLogs = () => {
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Başlık ve Açıklama Paneli */}
-      <div className="glass-panel p-6 rounded-2xl border-l-4 border-l-purple-500 relative overflow-hidden">
+      <div className="glass-panel p-6 rounded-2xl border-l-4 border-l-yellow-500 relative overflow-hidden">
         <div className="absolute top-0 right-0 p-8 opacity-10">
           <ShieldAlert size={120} />
         </div>
         <div className="relative z-10">
           <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3 mb-3">
-            <ShieldAlert className="text-purple-400" />
+            <ShieldAlert className="text-yellow-400" />
             Sistem İşlem Kayıtları (Güvenlik Kamerası)
           </h2>
           <p className="text-slate-300 mb-2 leading-relaxed max-w-3xl">
@@ -90,12 +90,12 @@ const AdminLogs = () => {
               <input
                 type="text"
                 placeholder="İşlem, kişi veya bölüm ara..."
-                className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-sm text-slate-200 focus:outline-none focus:border-purple-500 transition-colors placeholder:text-slate-500"
+                className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-slate-700 rounded-lg text-sm text-slate-200 focus:outline-none focus:border-yellow-500 transition-colors placeholder:text-slate-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <span className="text-xs bg-purple-500/20 text-purple-400 px-3 py-1.5 rounded-full font-medium whitespace-nowrap">
+            <span className="text-xs bg-yellow-500/20 text-yellow-400 px-3 py-1.5 rounded-full font-medium whitespace-nowrap">
               {filteredLogs.length} Kayıt
             </span>
           </div>

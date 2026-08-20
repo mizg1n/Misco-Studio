@@ -36,7 +36,7 @@ const CustomerAppointments = () => {
           {appointments.map((apt) => (
             <div key={apt.id} className={`glass-panel p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 ${
               apt.status === 'COMPLETED' || apt.status === 'PAID' ? 'border-green-500/50 bg-green-500/5' :
-              apt.status === 'APPROVED' ? 'border-blue-500/50 bg-blue-500/5' :
+              apt.status === 'APPROVED' ? 'border-yellow-500/50 bg-yellow-500/5' :
               apt.status === 'REJECTED' ? 'border-rose-500/50 bg-rose-500/5' :
               'border-yellow-500/50 bg-yellow-500/5'
             }`}>
@@ -44,7 +44,7 @@ const CustomerAppointments = () => {
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full ${
                     apt.status === 'COMPLETED' || apt.status === 'PAID' ? 'bg-green-500/20 text-green-400' :
-                    apt.status === 'APPROVED' ? 'bg-blue-500/20 text-blue-400' :
+                    apt.status === 'APPROVED' ? 'bg-yellow-500/20 text-yellow-400' :
                     apt.status === 'REJECTED' ? 'bg-rose-500/20 text-rose-400' :
                     'bg-yellow-500/20 text-yellow-400'
                   }`}>

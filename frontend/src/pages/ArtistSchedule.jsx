@@ -57,7 +57,7 @@ const ArtistSchedule = () => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <Clock className="text-purple-400" size={24} />
+            <Clock className="text-yellow-400" size={24} />
             Sabit Haftalık Çalışma Şablonum
           </h2>
         </div>
@@ -71,10 +71,10 @@ const ArtistSchedule = () => {
               <p className="text-slate-400">Henüz çalışma saati tanımlanmamış.</p>
             ) : (
               workingHours.map(wh => (
-                <div key={wh.id} className={wh.is_active ? "p-4 rounded-xl border border-purple-500/30 bg-purple-500/10" : "p-4 rounded-xl border border-slate-700 bg-slate-800/50"}>
+                <div key={wh.id} className={wh.is_active ? "p-4 rounded-xl border border-yellow-500/30 bg-yellow-500/10" : "p-4 rounded-xl border border-slate-700 bg-slate-800/50"}>
                   <h3 className="font-semibold text-slate-200 mb-2">{DAYS[wh.day_of_week]}</h3>
                   {wh.is_active ? (
-                    <p className="text-purple-300 font-medium">
+                    <p className="text-yellow-300 font-medium">
                       {wh.start_time.substring(0, 5)} - {wh.end_time.substring(0, 5)}
                     </p>
                   ) : (
@@ -90,26 +90,26 @@ const ArtistSchedule = () => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <CalendarIcon className="text-pink-400" size={24} />
+            <CalendarIcon className="text-amber-400" size={24} />
             İzin Taleplerim
           </h2>
           <button 
             onClick={() => setLeaveFormOpen(true)}
-            className="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium transition-colors"
           >
             Yeni İzin Talep Et
           </button>
         </div>
 
         {leaveFormOpen && (
-          <div className="glass-panel p-6 rounded-2xl mb-6 border border-pink-500/30">
+          <div className="glass-panel p-6 rounded-2xl mb-6 border border-amber-500/30">
             <h3 className="text-lg font-semibold text-white mb-4">İzin Talebi Oluştur</h3>
             <form onSubmit={handleLeaveSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-400 mb-1">İzin Türü</label>
                   <select 
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-pink-500"
+                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
                     value={leaveData.leave_type}
                     onChange={(e) => setLeaveData({...leaveData, leave_type: e.target.value})}
                   >
@@ -124,7 +124,7 @@ const ArtistSchedule = () => {
                   <input 
                     type="datetime-local" 
                     required
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-pink-500"
+                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
                     value={leaveData.start_datetime}
                     onChange={(e) => setLeaveData({...leaveData, start_datetime: e.target.value})}
                   />
@@ -134,7 +134,7 @@ const ArtistSchedule = () => {
                   <input 
                     type="datetime-local" 
                     required
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-pink-500"
+                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
                     value={leaveData.end_datetime}
                     onChange={(e) => setLeaveData({...leaveData, end_datetime: e.target.value})}
                   />
@@ -144,7 +144,7 @@ const ArtistSchedule = () => {
                   <textarea 
                     required
                     rows="2"
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-pink-500"
+                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
                     value={leaveData.reason}
                     onChange={(e) => setLeaveData({...leaveData, reason: e.target.value})}
                   />
@@ -152,7 +152,7 @@ const ArtistSchedule = () => {
               </div>
               <div className="flex justify-end gap-3 mt-4">
                 <button type="button" onClick={() => setLeaveFormOpen(false)} className="px-4 py-2 text-slate-400 hover:text-white">İptal</button>
-                <button type="submit" className="px-6 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-lg font-medium">Gönder</button>
+                <button type="submit" className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium">Gönder</button>
               </div>
             </form>
           </div>

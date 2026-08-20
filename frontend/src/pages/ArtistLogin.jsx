@@ -27,10 +27,10 @@ const ArtistLogin = () => {
         
         {/* Başlık */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 bg-yellow-500/20 text-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
             <Palette size={32} />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-amber-400 bg-clip-text text-transparent">
             Artist Girişi
           </h1>
           <p className="text-slate-400 mt-2">Sanatçı paneline erişim</p>
@@ -47,7 +47,7 @@ const ArtistLogin = () => {
             <label className="block text-sm font-medium text-slate-400 mb-2">Kullanıcı Adı</label>
             <input 
               type="text" 
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Sanatçı kullanıcı adınız"
@@ -58,7 +58,7 @@ const ArtistLogin = () => {
             <label className="block text-sm font-medium text-slate-400 mb-2">Şifre</label>
             <input 
               type="password" 
-              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+              className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-colors"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
@@ -68,7 +68,7 @@ const ArtistLogin = () => {
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {loading ? 'Giriş Yapılıyor...' : 'Giriş Yap'}
           </button>

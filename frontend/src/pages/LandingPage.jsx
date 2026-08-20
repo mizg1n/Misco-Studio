@@ -17,13 +17,13 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-purple-500/30">
+    <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-yellow-500/30">
 
       {/* Navbar (Transparent) */}
       <nav className="absolute top-0 w-full z-50 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-600 to-rose-500 flex items-center justify-center shadow-lg shadow-purple-500/20">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-600 to-rose-500 flex items-center justify-center shadow-lg shadow-yellow-500/20">
               <Palette className="text-white" size={20} />
             </div>
             <span className="text-xl font-black tracking-widest text-white drop-shadow-md">MISCO STUDIO</span>
@@ -67,12 +67,12 @@ const LandingPage = () => {
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs font-bold uppercase tracking-widest mb-6">
               <Sparkles size={14} /> Premium Stüdyo Deneyimi
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6 drop-shadow-lg">
               Sanatınızı <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-rose-400">Bedeninizde</span> <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-rose-400">Bedeninizde</span> <br />
               Taşıyın.
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
@@ -84,7 +84,7 @@ const LandingPage = () => {
                 to="/login"
                 className="group relative px-8 py-4 bg-white text-slate-950 font-bold rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-200 to-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-200 to-white opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <Calendar size={20} className="relative z-10" />
                 <span className="relative z-10">Hemen Randevu Al</span>
               </Link>
@@ -107,7 +107,7 @@ const LandingPage = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="glass-panel p-1 rounded-3xl overflow-hidden group hover:border-purple-500/50 transition-colors">
+          <div className="glass-panel p-1 rounded-3xl overflow-hidden group hover:border-yellow-500/50 transition-colors">
             <div className="h-64 overflow-hidden rounded-t-[22px] relative">
               <img
                 src="dovme.jpg"
@@ -117,7 +117,7 @@ const LandingPage = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent"></div>
             </div>
             <div className="p-8 -mt-10 relative z-10">
-              <div className="w-14 h-14 bg-slate-900 border border-purple-500/30 rounded-2xl flex items-center justify-center mb-6 shadow-xl text-purple-400">
+              <div className="w-14 h-14 bg-slate-900 border border-yellow-500/30 rounded-2xl flex items-center justify-center mb-6 shadow-xl text-yellow-400">
                 <Palette size={28} />
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Özel Tasarım Dövme</h3>

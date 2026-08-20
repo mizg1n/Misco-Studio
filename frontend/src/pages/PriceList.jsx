@@ -32,7 +32,7 @@ const PriceList = () => {
         <h3 className="text-xl font-bold text-slate-200 mb-4 border-b border-slate-700 pb-2">{title}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {items.map((item) => (
-            <div key={item.id} className="glass-panel p-6 rounded-2xl flex justify-between items-center hover:border-purple-500/50 transition-colors">
+            <div key={item.id} className="glass-panel p-6 rounded-2xl flex justify-between items-center hover:border-yellow-500/50 transition-colors">
               <div>
                 <span className={`text-xs font-semibold px-2 py-1 rounded-full ${badgeColor}`}>
                   {badgeText}
@@ -40,7 +40,7 @@ const PriceList = () => {
                 <h4 className="text-lg font-medium mt-3 text-slate-200">{item.title}</h4>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-bold text-pink-400">₺{item.min_price}</span>
+                <span className="text-2xl font-bold text-amber-400">₺{item.min_price}</span>
                 {item.max_price && item.max_price > item.min_price && (
                   <p className="text-xs text-slate-400">başlayan fiyatlarla</p>
                 )}
@@ -56,8 +56,8 @@ const PriceList = () => {
     <div className="space-y-6">
       <h2 className="text-2xl font-bold text-slate-100 mb-8">Hizmet Fiyat Listesi</h2>
       
-      {renderPriceSection('Dövme Fiyatları', tattoos, 'bg-purple-500/20 text-purple-300', 'Dövme')}
-      {renderPriceSection('Kulak Piercingleri', earPiercings, 'bg-blue-500/20 text-blue-300', 'Kulak')}
+      {renderPriceSection('Dövme Fiyatları', tattoos, 'bg-yellow-500/20 text-yellow-300', 'Dövme')}
+      {renderPriceSection('Kulak Piercingleri', earPiercings, 'bg-yellow-500/20 text-yellow-300', 'Kulak')}
       {renderPriceSection('Vücut ve Yüz Piercingleri', bodyPiercings, 'bg-emerald-500/20 text-emerald-300', 'Vücut/Yüz')}
       
     </div>

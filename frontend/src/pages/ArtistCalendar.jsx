@@ -51,7 +51,7 @@ const ArtistCalendar = () => {
               <div key={apt.id} className="glass-panel p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-blue-500/20 text-blue-400">
+                    <span className="text-xs font-semibold px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-400">
                       Onaylandı
                     </span>
                     <span className="text-sm text-slate-400 font-medium">

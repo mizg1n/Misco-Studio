@@ -75,10 +75,10 @@ const AdminDashboard = () => {
         </div>
         <button 
           onClick={() => { setShowForm(!showForm); setError(''); setSuccess(''); }}
-          className="glass-panel p-6 rounded-2xl hover:border-purple-500/50 border border-transparent transition-all cursor-pointer text-left group"
+          className="glass-panel p-6 rounded-2xl hover:border-yellow-500/50 border border-transparent transition-all cursor-pointer text-left group"
         >
           <h4 className="text-slate-400 text-sm mb-1">Yeni Sanatçı</h4>
-          <span className="text-3xl font-bold text-purple-400 flex items-center gap-2 group-hover:text-purple-300 transition-colors">
+          <span className="text-3xl font-bold text-yellow-400 flex items-center gap-2 group-hover:text-yellow-300 transition-colors">
             <UserPlus size={28} />
             Artist Ekle
           </span>
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
                 <input
                   type="text"
                   name="username"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
                   value={formData.username}
                   onChange={handleChange}
                   required
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
                 <input
                   type="email"
                   name="email"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
                 <input
                   type="tel"
                   name="phone_number"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
                   value={formData.phone_number}
                   onChange={handleChange}
                 />
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
                 <input
                   type="password"
                   name="password"
-                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-slate-200"
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 text-slate-200"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -153,7 +153,7 @@ const AdminDashboard = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-70"
+                  className="flex-1 py-3 bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 rounded-lg font-medium text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 disabled:opacity-70"
                 >
                   {loading ? 'Ekleniyor...' : 'Artist Ekle'}
                 </button>

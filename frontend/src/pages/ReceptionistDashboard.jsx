@@ -78,7 +78,7 @@ const ReceptionistDashboard = () => {
         <div className="flex items-center gap-3 mb-2">
           <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
             apt.status === 'COMPLETED' ? 'bg-green-500/20 text-green-400' :
-            apt.status === 'APPROVED' ? 'bg-blue-500/20 text-blue-400' :
+            apt.status === 'APPROVED' ? 'bg-yellow-500/20 text-yellow-400' :
             apt.status === 'REJECTED' ? 'bg-rose-500/20 text-rose-400' :
             'bg-yellow-500/20 text-yellow-400'
           }`}>
@@ -108,7 +108,7 @@ const ReceptionistDashboard = () => {
             <>
               {!apt.artist && (
                 <select
-                  className="w-full px-3 py-2 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-purple-500 text-slate-200"
+                  className="w-full px-3 py-2 text-sm bg-slate-800/50 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 text-slate-200"
                   value={selectedArtists[apt.id] || ''}
                   onChange={(e) => handleArtistSelect(apt.id, e.target.value)}
                 >
@@ -138,7 +138,7 @@ const ReceptionistDashboard = () => {
           {apt.status === 'APPROVED' && (
             <button 
               onClick={() => handleStatusChange(apt.id, 'COMPLETED')}
-              className="w-full px-4 py-2 bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 rounded-lg text-sm font-medium transition-colors"
+              className="w-full px-4 py-2 bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 rounded-lg text-sm font-medium transition-colors"
             >
               Tamamlandı İşaretle
             </button>
@@ -162,8 +162,8 @@ const ReceptionistDashboard = () => {
           </div>
         </div>
         <div className="glass-panel p-5 rounded-2xl flex items-center gap-4">
-          <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-            <CheckCircle className="text-blue-400" size={24} />
+          <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center">
+            <CheckCircle className="text-yellow-400" size={24} />
           </div>
           <div>
             <p className="text-2xl font-bold text-white">{approvedAppointments.length}</p>
@@ -249,7 +249,7 @@ const ReceptionistDashboard = () => {
                 </div>
                 <button 
                   onClick={() => { setSelectedAppointment(apt); setCheckoutModalOpen(true); }}
-                  className="px-6 py-3 bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 rounded-lg text-sm font-semibold transition-colors border border-purple-500/30 hover:border-purple-500/50 min-w-[140px]"
+                  className="px-6 py-3 bg-yellow-500/20 text-yellow-300 hover:bg-yellow-500/30 rounded-lg text-sm font-semibold transition-colors border border-yellow-500/30 hover:border-yellow-500/50 min-w-[140px]"
                 >
                   💰 Tahsilat / Ödeme
                 </button>

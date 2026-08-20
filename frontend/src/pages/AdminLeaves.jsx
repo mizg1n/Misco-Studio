@@ -40,7 +40,7 @@ const AdminLeaves = () => {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2 mb-4">
-          <BookOpen className="text-pink-400" size={24} />
+          <BookOpen className="text-amber-400" size={24} />
           Onay Bekleyen İzin Talepleri
           {pendingLeaves.length > 0 && (
             <span className="ml-2 text-sm bg-yellow-500/20 text-yellow-400 px-2.5 py-0.5 rounded-full">{pendingLeaves.length}</span>

@@ -10,8 +10,8 @@ const CustomerDashboard = () => {
           <h3 className="text-lg font-semibold mb-2">Bakım Yönergeleri</h3>
           <p className="text-slate-400 text-sm">İşlem sonrası dikkat etmeniz gerekenler.</p>
         </div>
-        <div className="glass-panel p-6 rounded-2xl border-purple-500/30">
-          <h3 className="text-lg font-semibold mb-2 text-purple-400">Yeni Randevu</h3>
+        <div className="glass-panel p-6 rounded-2xl border-yellow-500/30">
+          <h3 className="text-lg font-semibold mb-2 text-yellow-400">Yeni Randevu</h3>
           <p className="text-slate-400 text-sm">Hemen randevunuzu oluşturun.</p>
         </div>
       </div>

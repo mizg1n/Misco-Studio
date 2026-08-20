@@ -74,7 +74,7 @@ const NotificationBell = () => {
             {unreadCount > 0 && (
               <button 
                 onClick={markAllAsRead}
-                className="text-xs text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1 cursor-pointer"
+                className="text-xs text-yellow-400 hover:text-yellow-300 transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <Check size={14} /> Tumu Okundu
               </button>
@@ -91,11 +91,11 @@ const NotificationBell = () => {
                 <div 
                   key={notif.id}
                   onClick={() => !notif.is_read && markAsRead(notif.id)}
-                  className={`p-4 border-b border-slate-800/50 cursor-pointer transition-colors flex gap-3 ${notif.is_read ? 'opacity-70 hover:bg-slate-800/30' : 'bg-purple-500/5 hover:bg-purple-500/10'}`}
+                  className={`p-4 border-b border-slate-800/50 cursor-pointer transition-colors flex gap-3 ${notif.is_read ? 'opacity-70 hover:bg-slate-800/30' : 'bg-yellow-500/5 hover:bg-yellow-500/10'}`}
                 >
-                  <div className={`mt-1 w-2 h-2 rounded-full shrink-0 ${notif.is_read ? 'bg-transparent' : 'bg-purple-500'}`}></div>
+                  <div className={`mt-1 w-2 h-2 rounded-full shrink-0 ${notif.is_read ? 'bg-transparent' : 'bg-yellow-500'}`}></div>
                   <div>
-                    <h4 className={`text-sm ${notif.is_read ? 'font-medium text-slate-300' : 'font-semibold text-purple-100'}`}>
+                    <h4 className={`text-sm ${notif.is_read ? 'font-medium text-slate-300' : 'font-semibold text-yellow-100'}`}>
                       {notif.title}
                     </h4>
                     <p className="text-xs text-slate-400 mt-1">{notif.message}</p>

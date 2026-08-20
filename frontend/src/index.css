@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #a78bfa; /* lilac */
-  --color-primary-dark: #8b5cf6;
-  --color-secondary: #f472b6; /* pink */
+  --color-primary: #facc15; /* yellow-400 */
+  --color-primary-dark: #eab308; /* yellow-500 */
+  --color-secondary: #f59e0b; /* amber-500 */
   
-  /* Overriding the slate palette to be Lilac/Mauve tinted for the whole site */
-  --color-slate-50: #fbf9ff;
-  --color-slate-100: #f4efff;
-  --color-slate-200: #e7def8;
-  --color-slate-300: #d3c1f0;
-  --color-slate-400: #b49ce5;
-  --color-slate-500: #906cd5;
-  --color-slate-600: #744bbf;
-  --color-slate-700: #5d38a0;
-  --color-slate-800: #3c1e70;
-  --color-slate-900: #230d4a;
-  --color-slate-950: #14052e;
+  /* Overriding the slate palette to be Neutral/Warm for the whole site */
+  --color-slate-50: #fafafa;
+  --color-slate-100: #f5f5f5;
+  --color-slate-200: #e5e5e5;
+  --color-slate-300: #d4d4d4;
+  --color-slate-400: #a3a3a3;
+  --color-slate-500: #737373;
+  --color-slate-600: #525252;
+  --color-slate-700: #404040;
+  --color-slate-800: #262626;
+  --color-slate-900: #171717;
+  --color-slate-950: #0a0a0a;
 
   --color-dark-bg: var(--color-slate-900);
   --color-dark-surface: var(--color-slate-800);
@@ -34,17 +34,17 @@ body {
   background-color: var(--color-dark-bg);
   color: #f8fafc;
   
-  /* A very subtle blue-pink gradient radial background for the whole app */
+  /* A very subtle yellow-amber gradient radial background for the whole app */
   background-image: 
-    radial-gradient(circle at 15% 50%, rgba(236, 72, 153, 0.05), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.05), transparent 25%);
+    radial-gradient(circle at 15% 50%, rgba(250, 204, 21, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.05), transparent 25%);
   background-attachment: fixed;
 }
 
 .glass-panel {
-  background: rgba(60, 30, 112, 0.4); /* Based on slate-800 */
+  background: rgba(38, 38, 38, 0.4); /* Based on slate-800 */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(211, 193, 240, 0.1); /* Based on slate-300 */
-  box-shadow: 0 8px 32px 0 rgba(20, 5, 46, 0.3);
+  border: 1px solid rgba(212, 212, 212, 0.1); /* Based on slate-300 */
+  box-shadow: 0 8px 32px 0 rgba(10, 10, 10, 0.3);
 }

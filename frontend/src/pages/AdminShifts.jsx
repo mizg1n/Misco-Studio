@@ -38,7 +38,7 @@ const AdminShifts = () => {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2 mb-6">
-          <Calendar className="text-purple-400" size={24} />
+          <Calendar className="text-yellow-400" size={24} />
           Personel Vardiya Matrisi
         </h2>
 
@@ -47,7 +47,7 @@ const AdminShifts = () => {
             <button
               key={idx}
               onClick={() => setSelectedDay(idx)}
-              className={selectedDay === idx ? "px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-purple-500 text-white shadow-lg shadow-purple-500/20" : "px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200"}
+              className={selectedDay === idx ? "px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-yellow-500 text-white shadow-lg shadow-yellow-500/20" : "px-4 py-2 rounded-lg text-sm font-medium transition-colors bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200"}
             >
               {dayName}
             </button>
@@ -69,7 +69,7 @@ const AdminShifts = () => {
                 return (
                   <tr key={artist.id} className="hover:bg-slate-800/30 transition-colors">
                     <td className="px-6 py-4 font-medium text-slate-200 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-300 font-bold">
+                      <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-300 font-bold">
                         {artist.username.charAt(0).toUpperCase()}
                       </div>
                       {artist.username}
@@ -77,7 +77,7 @@ const AdminShifts = () => {
                     <td className="px-6 py-4">
                       {wh ? (
                         wh.is_active ? (
-                          <div className="flex items-center gap-2 text-purple-300 font-medium">
+                          <div className="flex items-center gap-2 text-yellow-300 font-medium">
                             <Clock size={16} />
                             {wh.start_time.substring(0,5)} - {wh.end_time.substring(0,5)}
                           </div>

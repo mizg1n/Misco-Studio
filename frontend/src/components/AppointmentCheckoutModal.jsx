@@ -65,7 +65,7 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
         {/* Header */}
         <div className="p-6 border-b border-slate-700/50 flex items-center justify-between bg-slate-800/30">
           <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-            <Calculator className="text-purple-400" />
+            <Calculator className="text-yellow-400" />
             Tahsilat & Tamamlama
           </h2>
           <button 
@@ -78,9 +78,9 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
 
         {/* Body */}
         <div className="p-6 overflow-y-auto flex-1 space-y-4">
-          <div className="p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl">
+          <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
             <p className="text-slate-300 text-sm">Müşteri: <strong className="text-white">{appointment.customer_name}</strong></p>
-            <p className="text-slate-300 text-sm">Sanatçı: <strong className="text-purple-400">{appointment.artist_name || 'Seçilmemiş'}</strong></p>
+            <p className="text-slate-300 text-sm">Sanatçı: <strong className="text-yellow-400">{appointment.artist_name || 'Seçilmemiş'}</strong></p>
           </div>
 
           <div className="space-y-4">
@@ -90,7 +90,7 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                 type="number" 
                 value={totalAmount || ''} 
                 onChange={(e) => setTotalAmount(Number(e.target.value))}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-purple-500 outline-none"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
                 placeholder="Örn: 1500"
               />
             </div>
@@ -102,7 +102,7 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                   type="number" 
                   value={discountAmount || ''} 
                   onChange={(e) => setDiscountAmount(Number(e.target.value))}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-purple-500 outline-none"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
                 />
               </div>
               <div>
@@ -111,7 +111,7 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                   type="number" 
                   value={depositAmount || ''} 
                   onChange={(e) => setDepositAmount(Number(e.target.value))}
-                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-purple-500 outline-none"
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
                 />
               </div>
             </div>
@@ -130,7 +130,7 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
               <select 
                 value={paymentMethod} 
                 onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-purple-500 outline-none"
+                className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
               >
                 <option value="CASH">Nakit</option>
                 <option value="CREDIT_CARD">Kredi Kartı</option>
