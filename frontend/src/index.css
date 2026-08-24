@@ -48,3 +48,12 @@ body {
   border: 1px solid rgba(212, 212, 212, 0.1); /* Based on slate-300 */
   box-shadow: 0 8px 32px 0 rgba(10, 10, 10, 0.3);
 }
+/* Remove up/down arrows from number inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

@@ -3,12 +3,12 @@ import axiosInstance from '../api/axios';
 import { X, Check, Calculator } from 'lucide-react';
 
 const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComplete }) => {
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [discountAmount, setDiscountAmount] = useState(0);
-  const [depositAmount, setDepositAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState('');
+  const [discountAmount, setDiscountAmount] = useState('');
+  const [depositAmount, setDepositAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('CASH');
-  const [cashAmount, setCashAmount] = useState(0);
-  const [cardAmount, setCardAmount] = useState(0);
+  const [cashAmount, setCashAmount] = useState('');
+  const [cardAmount, setCardAmount] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -25,14 +25,20 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
 
   if (!isOpen || !appointment) return null;
 
-  const finalAmount = Math.max(0, totalAmount - discountAmount);
-  const remainingAmount = Math.max(0, finalAmount - depositAmount);
+  const numTotal = Number(totalAmount) || 0;
+  const numDiscount = Number(discountAmount) || 0;
+  const numDeposit = Number(depositAmount) || 0;
+  const numCash = Number(cashAmount) || 0;
+  const numCard = Number(cardAmount) || 0;
+
+  const finalAmount = Math.max(0, numTotal - numDiscount);
+  const remainingAmount = Math.max(0, finalAmount - numDeposit);
 
   // Preview commission for the artist (assuming default 50% for preview if not known)
   const artistCommission = finalAmount * (appointment?.artist_commission_rate ? (appointment.artist_commission_rate / 100) : 0.50);
 
   const handleCheckout = async () => {
-    if (paymentMethod === 'SPLIT' && (cashAmount + cardAmount !== remainingAmount)) {
+    if (paymentMethod === 'SPLIT' && (numCash + numCard !== remainingAmount)) {
       alert('Parçalı ödemede nakit ve kart toplamı kalan tutara eşit olmalıdır.');
       return;
     }
@@ -41,12 +47,12 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
     try {
       await axiosInstance.post('/finance/checkout/', {
         appointment_id: appointment.id,
-        total_amount: totalAmount,
-        discount_amount: discountAmount,
-        deposit_amount: depositAmount,
+        total_amount: numTotal,
+        discount_amount: numDiscount,
+        deposit_amount: numDeposit,
         payment_method: paymentMethod,
-        cash_amount: paymentMethod === 'SPLIT' ? cashAmount : (paymentMethod === 'CASH' ? remainingAmount : 0),
-        card_amount: paymentMethod === 'SPLIT' ? cardAmount : (paymentMethod === 'CREDIT_CARD' ? remainingAmount : 0)
+        cash_amount: paymentMethod === 'SPLIT' ? numCash : (paymentMethod === 'CASH' ? remainingAmount : 0),
+        card_amount: paymentMethod === 'SPLIT' ? numCard : (paymentMethod === 'CREDIT_CARD' ? remainingAmount : 0)
       });
       onCheckoutComplete();
       onClose();
@@ -88,8 +94,8 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
               <label className="block text-sm font-medium text-slate-400 mb-1">Brüt Tutar (₺)</label>
               <input 
                 type="number" 
-                value={totalAmount || ''} 
-                onChange={(e) => setTotalAmount(Number(e.target.value))}
+                value={totalAmount} 
+                onChange={(e) => setTotalAmount(e.target.value)}
                 className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
                 placeholder="Örn: 1500"
               />
@@ -100,8 +106,8 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                 <label className="block text-sm font-medium text-slate-400 mb-1">İndirim/İskonto (₺)</label>
                 <input 
                   type="number" 
-                  value={discountAmount || ''} 
-                  onChange={(e) => setDiscountAmount(Number(e.target.value))}
+                  value={discountAmount} 
+                  onChange={(e) => setDiscountAmount(e.target.value)}
                   className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
                 />
               </div>
@@ -109,8 +115,8 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                 <label className="block text-sm font-medium text-slate-400 mb-1">Alınan Kapora (₺)</label>
                 <input 
                   type="number" 
-                  value={depositAmount || ''} 
-                  onChange={(e) => setDepositAmount(Number(e.target.value))}
+                  value={depositAmount} 
+                  onChange={(e) => setDepositAmount(e.target.value)}
                   className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-slate-200 focus:border-yellow-500 outline-none"
                 />
               </div>
@@ -145,8 +151,8 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                   <label className="block text-xs text-slate-400 mb-1">Nakit (₺)</label>
                   <input 
                     type="number" 
-                    value={cashAmount || ''} 
-                    onChange={(e) => setCashAmount(Number(e.target.value))}
+                    value={cashAmount} 
+                    onChange={(e) => setCashAmount(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 outline-none"
                   />
                 </div>
@@ -154,8 +160,8 @@ const AppointmentCheckoutModal = ({ isOpen, onClose, appointment, onCheckoutComp
                   <label className="block text-xs text-slate-400 mb-1">Kart (₺)</label>
                   <input 
                     type="number" 
-                    value={cardAmount || ''} 
-                    onChange={(e) => setCardAmount(Number(e.target.value))}
+                    value={cardAmount} 
+                    onChange={(e) => setCardAmount(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 outline-none"
                   />
                 </div>
