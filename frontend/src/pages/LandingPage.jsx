@@ -1,4 +1,5 @@
-﻿import { Link } from 'react-router-dom';
+﻿import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Calendar, ChevronRight, ShieldCheck, Palette, Sparkles } from 'lucide-react';
 import useAuthStore from '../store/useAuthStore';
 
@@ -15,6 +16,8 @@ const LandingPage = () => {
       default: return '/login';
     }
   };
+
+
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 selection:bg-yellow-500/30">

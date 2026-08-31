@@ -14,7 +14,6 @@ import ArtistDashboard from './pages/ArtistDashboard';
 import ArtistCalendar from './pages/ArtistCalendar';
 import ReceptionistDashboard from './pages/ReceptionistDashboard';
 import ReceptionistCalendar from './pages/ReceptionistCalendar';
-import AdminDashboard from './pages/AdminDashboard';
 import AdminFinance from './pages/AdminFinance';
 import ArtistEarnings from './pages/ArtistEarnings';
 import AdminLogs from './pages/AdminLogs';
@@ -89,7 +88,7 @@ function App() {
           <Route path="receptionist/shifts" element={<ProtectedRoute allowedRoles={['RECEPTIONIST', 'ADMIN']}><AdminShifts /></ProtectedRoute>} />
           
           {/* Admin Routes */}
-          <Route path="admin" element={<ProtectedRoute allowedRoles={['ADMIN']}><AdminDashboard /></ProtectedRoute>} />
+          <Route path="admin" element={<ProtectedRoute allowedRoles={['ADMIN']}><AdminShifts /></ProtectedRoute>} />
           <Route path="admin/finance" element={<ProtectedRoute allowedRoles={['ADMIN']}><AdminFinance /></ProtectedRoute>} />
           <Route path="admin/logs" element={<ProtectedRoute allowedRoles={['ADMIN']}><AdminLogs /></ProtectedRoute>} />
           <Route path="admin/shifts" element={<ProtectedRoute allowedRoles={['ADMIN']}><AdminShifts /></ProtectedRoute>} />

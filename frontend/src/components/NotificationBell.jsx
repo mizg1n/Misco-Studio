@@ -68,8 +68,8 @@ const NotificationBell = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-3 w-80 sm:w-96 glass-panel rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden z-50">
-          <div className="p-4 border-b border-slate-700/50 flex justify-between items-center bg-slate-900/50">
+        <div className="absolute right-0 mt-3 w-80 sm:w-96 bg-slate-900 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden z-50">
+          <div className="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-800">
             <h3 className="font-semibold text-slate-100">Bildirimler</h3>
             {unreadCount > 0 && (
               <button 

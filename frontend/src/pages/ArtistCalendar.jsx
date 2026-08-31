@@ -32,7 +32,7 @@ const ArtistCalendar = () => {
   if (loading) return <div className="text-slate-400">Yükleniyor...</div>;
 
   const activeAppointments = appointments.filter(a => a.status === 'APPROVED');
-  const completedAppointments = appointments.filter(a => a.status === 'COMPLETED' || a.status === 'PAID');
+  const completedAppointments = appointments.filter(a => a.status === 'COMPLETED');
 
   return (
     <div className="space-y-8">
@@ -88,9 +88,9 @@ const ArtistCalendar = () => {
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <span className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                      apt.status === 'PAID' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-green-500/20 text-green-400'
+                      'bg-green-500/20 text-green-400'
                     }`}>
-                      {apt.status === 'PAID' ? 'Ödendi' : 'Yapıldı - Ödeme Bekliyor'}
+                      {'Tamamlandı'}
                     </span>
                     <span className="text-sm text-slate-400 font-medium">
                       {new Date(apt.scheduled_at).toLocaleString('tr-TR')}

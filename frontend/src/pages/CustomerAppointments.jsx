@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import axiosInstance from '../api/axios';
-import { Calendar, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, CheckCircle, XCircle, AlertCircle, Search } from 'lucide-react';
 
 const CustomerAppointments = () => {
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('ALL');
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -21,21 +23,66 @@ const CustomerAppointments = () => {
     fetchAppointments();
   }, []);
 
+
+  const filteredAppointments = useMemo(() => {
+    return appointments.filter((item) => {
+      let matchesStatus = true;
+      if (selectedFilter === 'PENDING') matchesStatus = item.status === 'PENDING';
+      else if (selectedFilter === 'APPROVED') matchesStatus = item.status === 'APPROVED';
+      else if (selectedFilter === 'COMPLETED') matchesStatus = item.status === 'COMPLETED';
+      else if (selectedFilter === 'REJECTED') matchesStatus = item.status === 'REJECTED' || item.status === 'CANCELLED';
+
+      const query = searchQuery.toLowerCase().trim();
+      const matchesSearch = !query || 
+        item.customer_name?.toLowerCase().includes(query) ||
+        item.artist_name?.toLowerCase().includes(query) ||
+        item.service_type?.toLowerCase().includes(query) ||
+        (item.scheduled_at && new Date(item.scheduled_at).toLocaleString('tr-TR').includes(query));
+
+      return matchesStatus && matchesSearch;
+    });
+  }, [appointments, selectedFilter, searchQuery]);
+
   if (loading) return <div className="text-slate-400">Yükleniyor...</div>;
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-slate-100">Geçmiş ve Mevcut Randevularım</h2>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <h2 className="text-2xl font-bold text-slate-100">Geçmiş ve Mevcut Randevularım</h2>
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          <select 
+            value={selectedFilter}
+            onChange={(e) => setSelectedFilter(e.target.value)}
+            className="w-full sm:w-auto px-3 py-2 bg-slate-800/80 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 text-slate-200 text-sm"
+          >
+            <option value="ALL">Tümü</option>
+            <option value="PENDING">Onay Bekleyenler</option>
+            <option value="APPROVED">Onaylananlar</option>
+            <option value="COMPLETED">Tamamlananlar</option>
+            <option value="REJECTED">Reddedilenler</option>
+          </select>
+          <div className="relative w-full sm:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+            <input 
+              type="text" 
+              placeholder="Ara..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-4 py-2 bg-slate-800/80 border border-slate-700 rounded-lg focus:outline-none focus:border-yellow-500 text-slate-200 text-sm"
+            />
+          </div>
+        </div>
+      </div>
       
-      {appointments.length === 0 ? (
+      {filteredAppointments.length === 0 ? (
         <div className="glass-panel p-8 rounded-2xl text-center">
           <p className="text-slate-400">Henüz bir randevu talebiniz bulunmamaktadır.</p>
         </div>
       ) : (
         <div className="grid gap-4">
-          {appointments.map((apt) => (
-            <div key={apt.id} className={`glass-panel p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 ${
-              apt.status === 'COMPLETED' || apt.status === 'PAID' ? 'border-green-500/50 bg-green-500/5' :
+          {filteredAppointments.map((apt) => (
+            <div key={apt.id} className={`glass-panel p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 border-l-4 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 transition-all duration-300 ${
+              apt.status === 'COMPLETED' ? 'border-green-500/50 bg-green-500/5' :
               apt.status === 'APPROVED' ? 'border-yellow-500/50 bg-yellow-500/5' :
               apt.status === 'REJECTED' ? 'border-rose-500/50 bg-rose-500/5' :
               'border-yellow-500/50 bg-yellow-500/5'
@@ -43,19 +90,19 @@ const CustomerAppointments = () => {
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-3">
                   <span className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full ${
-                    apt.status === 'COMPLETED' || apt.status === 'PAID' ? 'bg-green-500/20 text-green-400' :
+                    apt.status === 'COMPLETED' ? 'bg-green-500/20 text-green-400' :
                     apt.status === 'APPROVED' ? 'bg-yellow-500/20 text-yellow-400' :
                     apt.status === 'REJECTED' ? 'bg-rose-500/20 text-rose-400' :
                     'bg-yellow-500/20 text-yellow-400'
                   }`}>
-                    {apt.status === 'COMPLETED' || apt.status === 'PAID' ? <CheckCircle size={14} /> :
+                    {apt.status === 'COMPLETED' ? <CheckCircle size={14} /> :
                      apt.status === 'APPROVED' ? <CheckCircle size={14} /> :
                      apt.status === 'REJECTED' ? <XCircle size={14} /> :
                      <Clock size={14} />}
                     
                     {apt.status === 'PENDING' ? 'Onay Bekliyor' : 
                      apt.status === 'APPROVED' ? 'Onaylandı' :
-                     apt.status === 'COMPLETED' || apt.status === 'PAID' ? 'Tamamlandı' : 'Reddedildi'}
+                     apt.status === 'COMPLETED' ? 'Tamamlandı' : 'Reddedildi'}
                   </span>
                   {apt.scheduled_at && (
                     <span className="text-sm text-slate-400 font-medium flex items-center gap-1">
@@ -75,10 +122,14 @@ const CustomerAppointments = () => {
                   </p>
                 )}
 
-                <div className="mt-4 p-4 bg-slate-900/60 rounded-xl border border-slate-700/50">
+              </div>
+              
+              {apt.description && (
+                <div className="md:w-64 p-4 bg-slate-900/60 rounded-xl border border-slate-700/50 flex-shrink-0">
+                  <p className="text-xs font-medium text-slate-500 mb-1 uppercase tracking-wider">Açıklama / Not</p>
                   <p className="text-sm text-slate-300 whitespace-pre-wrap">{apt.description}</p>
                 </div>
-              </div>
+              )}
               
               {/* Reddedildi Mesajı */}
               {apt.status === 'REJECTED' && (
@@ -86,7 +137,13 @@ const CustomerAppointments = () => {
                   <AlertCircle className="text-rose-400 shrink-0 mt-0.5" size={20} />
                   <div>
                     <h4 className="text-sm font-semibold text-rose-400 mb-1">Randevu İptali</h4>
-                    <p className="text-xs text-rose-300/80">Randevu talebiniz reddedilmiştir. Stüdyonun uygunluk durumuna göre başka bir tarih için tekrar talep oluşturabilirsiniz.</p>
+                    <p className="text-xs text-rose-300/80">
+                      {apt.rejection_reason ? (
+                        <><strong>Reddedilme Sebebi:</strong> {apt.rejection_reason}</>
+                      ) : (
+                        "Randevu talebiniz reddedilmiştir. Stüdyonun uygunluk durumuna göre başka bir tarih için tekrar talep oluşturabilirsiniz."
+                      )}
+                    </p>
                   </div>
                 </div>
               )}

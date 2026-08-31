@@ -5,6 +5,12 @@ from .models import PriceList, CareInstruction, Appointment, AuditLog, Notificat
 
 User = get_user_model()
 
+class PublicUserSerializer(serializers.ModelSerializer):
+    """Minimal user info for non-admin users (e.g. artist picker)."""
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'role')
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

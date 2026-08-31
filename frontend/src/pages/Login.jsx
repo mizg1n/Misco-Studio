@@ -16,7 +16,7 @@ const Login = () => {
       
       const storedUser = JSON.parse(localStorage.getItem('user'));
       if (storedUser?.role === 'CUSTOMER') {
-        navigate('/dashboard/customer/appointment');
+        navigate('/dashboard/customer');
       } else if (storedUser?.role === 'ADMIN') {
         navigate('/dashboard/admin');
       } else if (storedUser?.role === 'RECEPTIONIST') {

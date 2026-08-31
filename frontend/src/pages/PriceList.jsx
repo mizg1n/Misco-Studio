@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axios';
 
 const PriceList = () => {
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPrices = async () => {
@@ -54,7 +56,15 @@ const PriceList = () => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-slate-100 mb-8">Hizmet Fiyat Listesi</h2>
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-2xl font-bold text-slate-100">Hizmet Fiyat Listesi</h2>
+        <button
+          onClick={() => navigate('/dashboard/customer/appointment')}
+          className="bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 text-white font-semibold py-2 px-6 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] active:scale-95"
+        >
+          Randevu Al
+        </button>
+      </div>
       
       {renderPriceSection('Dövme Fiyatları', tattoos, 'bg-yellow-500/20 text-yellow-300', 'Dövme')}
       {renderPriceSection('Kulak Piercingleri', earPiercings, 'bg-yellow-500/20 text-yellow-300', 'Kulak')}

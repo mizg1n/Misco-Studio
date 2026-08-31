@@ -70,6 +70,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
     service_type = models.CharField(max_length=20, choices=SERVICE_CHOICES)
     description = models.TextField(blank=True, null=True)
+    rejection_reason = models.TextField(blank=True, null=True)
     reference_image = models.ImageField(upload_to='appointments/references/', null=True, blank=True)
     scheduled_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

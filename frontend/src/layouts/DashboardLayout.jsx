@@ -34,14 +34,12 @@ const DashboardLayout = () => {
       items.push({ label: 'Çalışma Saatlerim', icon: <Clock />, path: '/dashboard/artist/my-schedule' });
     } else if (user.role === 'RECEPTIONIST') {
       items.push({ label: 'Randevu Durumu', icon: <Calendar />, path: '/dashboard/receptionist' });
-      items.push({ label: 'Tüm Randevular', icon: <Calendar />, path: '/dashboard/receptionist/calendar' });
       items.push({ label: 'Personel Mesai', icon: <Clock />, path: '/dashboard/receptionist/shifts' });
     } else if (user.role === 'ADMIN') {
-      items.push({ label: 'İşlemler', icon: <Settings />, path: '/dashboard/admin' });
+      items.push({ label: 'Personel Mesai', icon: <Clock />, path: '/dashboard/admin' });
       items.push({ label: 'Tüm Randevular', icon: <Calendar />, path: '/dashboard/receptionist/calendar' });
-      items.push({ label: 'Personel Mesai', icon: <Clock />, path: '/dashboard/receptionist/shifts' });
       items.push({ label: 'İzin Talepleri', icon: <BookOpen />, path: '/dashboard/admin/leaves' });
-      items.push({ label: 'Finans Raporları', icon: <DollarSign />, path: '/dashboard/admin/finance' });
+      items.push({ label: 'Finans & İşlemler', icon: <DollarSign />, path: '/dashboard/admin/finance' });
       items.push({ label: 'Loglar', icon: <ShieldAlert />, path: '/dashboard/admin/logs' });
     }
     
@@ -140,7 +138,7 @@ const DashboardLayout = () => {
           </div>
           
           <div className="flex items-center gap-3">
-            {location.pathname === '/dashboard/customer/appointment' && <NotificationBell />}
+            {user?.role === 'CUSTOMER' && <NotificationBell />}
             {/* Sağ Üst Menü Açma İkonu */}
             <button 
               onClick={() => setIsSidebarOpen(true)}

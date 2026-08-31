@@ -11,7 +11,7 @@ from django.conf import settings
 from .models import PriceList, CareInstruction, Appointment, AuditLog, Notification, Payment, ArtistPayout
 from django.db.models import Sum, Count
 from .serializers import (
-    UserSerializer, RegisterSerializer, PriceListSerializer,
+    UserSerializer, PublicUserSerializer, RegisterSerializer, PriceListSerializer,
     CareInstructionSerializer, AppointmentSerializer, AppointmentAdminSerializer,
     AuditLogSerializer, NotificationSerializer, PaymentSerializer, ArtistPayoutSerializer
 )
@@ -67,11 +67,17 @@ class CurrentUserView(generics.RetrieveAPIView):
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+
+    def get_serializer_class(self):
+        # Only admin/receptionist can see sensitive fields (email, commission_rate, payout_type, phone)
+        if self.request.user.is_authenticated and getattr(self.request.user, 'role', None) in ['ADMIN', 'RECEPTIONIST']:
+            return UserSerializer
+        return PublicUserSerializer
 
     def get_permissions(self):
         if self.action in ['list', 'retrieve']:
-            return [permissions.AllowAny()]
+            # Must be authenticated to list users; sensitive fields filtered by serializer above
+            return [permissions.IsAuthenticated()]
         return [IsAdmin()]
 
 class PriceListViewSet(viewsets.ModelViewSet):
@@ -86,6 +92,12 @@ class PriceListViewSet(viewsets.ModelViewSet):
 class CareInstructionViewSet(viewsets.ModelViewSet):
     queryset = CareInstruction.objects.all()
     serializer_class = CareInstructionSerializer
+
+    def get_permissions(self):
+        # Anyone can read care instructions; only admin can create/edit/delete
+        if self.action in ['list', 'retrieve']:
+            return [permissions.AllowAny()]
+        return [IsAdmin()]
 
 class AppointmentViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
@@ -107,6 +119,17 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         return [permissions.IsAuthenticated()]
+
+    def get_allowed_actions_for_customer(self):
+        return ['create', 'list', 'retrieve']
+
+    def check_permissions(self, request):
+        super().check_permissions(request)
+        # Customers may only create new appointments or view their own
+        if getattr(request.user, 'role', None) == 'CUSTOMER':
+            if self.action not in ['create', 'list', 'retrieve', 'stats']:
+                from rest_framework.exceptions import PermissionDenied
+                raise PermissionDenied("Müşteriler randevu güncelleyemez veya silemez.")
         
     @action(detail=False, methods=['get'])
     def stats(self, request):
@@ -249,6 +272,13 @@ class ArtistWorkingHoursViewSet(viewsets.ModelViewSet):
             return ArtistWorkingHours.objects.all()
         return ArtistWorkingHours.objects.filter(artist=self.request.user)
 
+    def perform_create(self, serializer):
+        # Artists can only create working hours for themselves
+        if self.request.user.role == 'ARTIST':
+            serializer.save(artist=self.request.user)
+        else:
+            serializer.save()
+
 class ArtistShiftViewSet(viewsets.ModelViewSet):
     serializer_class = ArtistShiftSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -257,6 +287,13 @@ class ArtistShiftViewSet(viewsets.ModelViewSet):
         if self.request.user.role == 'ADMIN' or self.request.user.role == 'RECEPTIONIST':
             return ArtistShift.objects.all()
         return ArtistShift.objects.filter(artist=self.request.user)
+
+    def perform_create(self, serializer):
+        # Artists can only create shifts for themselves
+        if self.request.user.role == 'ARTIST':
+            serializer.save(artist=self.request.user)
+        else:
+            serializer.save()
 
 class ArtistLeaveViewSet(viewsets.ModelViewSet):
     serializer_class = ArtistLeaveSerializer
@@ -304,26 +341,40 @@ class ArtistAvailableSlotsView(APIView):
         artist_id = request.query_params.get('artist_id')
         date_str = request.query_params.get('date')
         
-        if not artist_id or not date_str:
-            return Response({'error': 'artist_id and date required'}, status=400)
+        if not date_str:
+            return Response({'error': 'date required'}, status=400)
             
         try:
             target_date = datetime.strptime(date_str, '%Y-%m-%d').date()
         except ValueError:
             return Response({'error': 'invalid date format, use YYYY-MM-DD'}, status=400)
             
-        artist = User.objects.filter(id=artist_id, role='ARTIST').first()
-        if not artist:
-            return Response({'error': 'artist not found'}, status=404)
+        if artist_id:
+            artists = User.objects.filter(id=artist_id, role='ARTIST')
+            if not artists.exists():
+                return Response({'error': 'artist not found'}, status=404)
+        else:
+            artists = User.objects.filter(role='ARTIST')
             
         # Generate 1-hour slots from 10:00 to 20:00
         slots = []
         for hour in range(10, 20):
             slot_time = timezone.make_aware(datetime.combine(target_date, datetime.min.time().replace(hour=hour)))
-            is_avail, _ = check_artist_availability(artist, slot_time)
+            
+            is_avail = False
+            assigned_artist = None
+            for artist in artists:
+                avail, _ = check_artist_availability(artist, slot_time)
+                if avail:
+                    is_avail = True
+                    assigned_artist = artist
+                    break
+                    
             slots.append({
                 'time': f"{hour:02d}:00",
-                'available': is_avail
+                'available': is_avail,
+                'assigned_artist_id': assigned_artist.id if assigned_artist else None,
+                'assigned_artist_name': assigned_artist.username if assigned_artist else None
             })
             
         return Response({'slots': slots})
