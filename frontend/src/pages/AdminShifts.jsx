@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../api/axios";
 import { Calendar, Clock, AlertCircle , UserPlus } from "lucide-react";
+import useAuthStore from "../store/useAuthStore";
 
 const AdminShifts = () => {
+  const { user } = useAuthStore();
   const [workingHours, setWorkingHours] = useState([]);
   const [shifts, setShifts] = useState([]);
   const [artists, setArtists] = useState([]);
@@ -79,13 +81,15 @@ const AdminShifts = () => {
             <Calendar className="text-yellow-400" size={24} />
             Personel Vardiya Matrisi
           </h2>
-          <button 
-            onClick={() => { setShowForm(!showForm); setError(''); setSuccess(''); }}
-            className="flex items-center gap-2 px-4 py-2 bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-500 font-medium rounded-lg border border-yellow-500/20 transition-colors"
-          >
-            <UserPlus size={18} />
-            Artist Ekle
-          </button>
+          {user?.role === 'ADMIN' && (
+            <button 
+              onClick={() => { setShowForm(!showForm); setError(''); setSuccess(''); }}
+              className="flex items-center gap-2 px-4 py-2 bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-500 font-medium rounded-lg border border-yellow-500/20 transition-colors"
+            >
+              <UserPlus size={18} />
+              Artist Ekle
+            </button>
+          )}
         </div>
 
         {success && (
@@ -165,7 +169,7 @@ const AdminShifts = () => {
       </div>
 
       {/* Artist Ekleme Modal */}
-      {showForm && (
+      {showForm && user?.role === 'ADMIN' && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
           <div className="relative glass-panel p-8 rounded-2xl w-full max-w-lg mx-4 shadow-2xl border border-slate-700/50">

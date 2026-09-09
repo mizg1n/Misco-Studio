@@ -66,7 +66,12 @@ class CurrentUserView(generics.RetrieveAPIView):
         return self.request.user
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    def get_queryset(self):
+        queryset = User.objects.all()
+        role = self.request.query_params.get('role')
+        if role:
+            queryset = queryset.filter(role=role)
+        return queryset
 
     def get_serializer_class(self):
         # Only admin/receptionist can see sensitive fields (email, commission_rate, payout_type, phone)
@@ -119,6 +124,12 @@ class AppointmentViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         return [permissions.IsAuthenticated()]
+
+    def perform_create(self, serializer):
+        if self.request.user.role == 'CUSTOMER':
+            serializer.save(customer=self.request.user)
+        else:
+            serializer.save()
 
     def get_allowed_actions_for_customer(self):
         return ['create', 'list', 'retrieve']
