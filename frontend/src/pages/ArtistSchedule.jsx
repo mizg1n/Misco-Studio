@@ -102,59 +102,66 @@ const ArtistSchedule = () => {
         </div>
 
         {leaveFormOpen && (
-          <div className="glass-panel p-6 rounded-2xl mb-6 border border-amber-500/30">
-            <h3 className="text-lg font-semibold text-white mb-4">İzin Talebi Oluştur</h3>
-            <form onSubmit={handleLeaveSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-1">İzin Türü</label>
-                  <select 
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
-                    value={leaveData.leave_type}
-                    onChange={(e) => setLeaveData({...leaveData, leave_type: e.target.value})}
-                  >
-                    <option value="ANNUAL">Yıllık İzin</option>
-                    <option value="SICK">Hastalık İzni / Rapor</option>
-                    <option value="UNPAID">Ücretsiz İzin</option>
-                    <option value="CASUAL">Mazeret İzni</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-1">Başlangıç</label>
-                  <input 
-                    type="datetime-local" 
-                    required
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
-                    value={leaveData.start_datetime}
-                    onChange={(e) => setLeaveData({...leaveData, start_datetime: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-400 mb-1">Bitiş</label>
-                  <input 
-                    type="datetime-local" 
-                    required
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
-                    value={leaveData.end_datetime}
-                    onChange={(e) => setLeaveData({...leaveData, end_datetime: e.target.value})}
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-slate-400 mb-1">Gerekçe / Açıklama</label>
-                  <textarea 
-                    required
-                    rows="2"
-                    className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
-                    value={leaveData.reason}
-                    onChange={(e) => setLeaveData({...leaveData, reason: e.target.value})}
-                  />
-                </div>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+            <div className="glass-panel w-full max-w-lg p-6 rounded-2xl shadow-2xl border border-amber-500/30">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-xl font-semibold text-white">İzin Talebi Oluştur</h3>
+                <button onClick={() => setLeaveFormOpen(false)} className="text-slate-400 hover:text-white transition-colors">
+                  <XCircle size={24} />
+                </button>
               </div>
-              <div className="flex justify-end gap-3 mt-4">
-                <button type="button" onClick={() => setLeaveFormOpen(false)} className="px-4 py-2 text-slate-400 hover:text-white">İptal</button>
-                <button type="submit" className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium">Gönder</button>
-              </div>
-            </form>
+              <form onSubmit={handleLeaveSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-1">İzin Türü</label>
+                    <select 
+                      className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
+                      value={leaveData.leave_type}
+                      onChange={(e) => setLeaveData({...leaveData, leave_type: e.target.value})}
+                    >
+                      <option value="ANNUAL">Yıllık İzin</option>
+                      <option value="SICK">Hastalık İzni / Rapor</option>
+                      <option value="UNPAID">Ücretsiz İzin</option>
+                      <option value="CASUAL">Mazeret İzni</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-1">Başlangıç</label>
+                    <input 
+                      type="datetime-local" 
+                      required
+                      className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
+                      value={leaveData.start_datetime}
+                      onChange={(e) => setLeaveData({...leaveData, start_datetime: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-400 mb-1">Bitiş</label>
+                    <input 
+                      type="datetime-local" 
+                      required
+                      className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
+                      value={leaveData.end_datetime}
+                      onChange={(e) => setLeaveData({...leaveData, end_datetime: e.target.value})}
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-slate-400 mb-1">Gerekçe / Açıklama</label>
+                    <textarea 
+                      required
+                      rows="2"
+                      className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-slate-200 focus:outline-none focus:border-amber-500"
+                      value={leaveData.reason}
+                      onChange={(e) => setLeaveData({...leaveData, reason: e.target.value})}
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end gap-3 mt-6">
+                  <button type="button" onClick={() => setLeaveFormOpen(false)} className="px-4 py-2 text-slate-400 hover:text-white transition-colors">İptal</button>
+                  <button type="submit" className="px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-lg font-medium shadow-lg shadow-amber-500/20 transition-all">Gönder</button>
+                </div>
+              </form>
+            </div>
           </div>
         )}
 
